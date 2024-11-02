@@ -16,11 +16,29 @@ You can install the package via composer:
 composer require erikgreasy/filament-redirects
 ```
 
-You can publish and run the migrations with:
-
+Run the migrations
 ```bash
-php artisan vendor:publish --tag="filament-redirects-migrations"
 php artisan migrate
+```
+
+Add middleware to your application
+```php
+// bootstrap/app.php
+
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->append(\Erikgreasy\FilamentRedirects\Http\Middlewares\RedirectMiddleware::class);
+})
+```
+
+Add plugin to your Filament Panel Provider
+```php
+// eg. app/Providers/Filament/AdminPanelProvider.php
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugin(new \Erikgreasy\FilamentRedirects\FilamentRedirectsPlugin());
+}
 ```
 
 
