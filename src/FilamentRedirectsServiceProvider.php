@@ -21,7 +21,7 @@ class FilamentRedirectsServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package->name(static::$name)
-            ->hasMigrations(['create_redirects_table'])
+            ->hasMigrations(['2024_07_20_161059_create_redirects_table'])
             ->runsMigrations()
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
